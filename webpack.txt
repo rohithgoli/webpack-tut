@@ -1,0 +1,52 @@
+
++ Initialize a package.json file using npm init -y
++ Install req. packages using npm install webpack webpack-cli
++ Create a file with name webpack.config.js
+    It will be considered as node js file, so use module.export syntax
+    which is a node js way of exporting data from file
+    instead of ES6 export syntax
+
+# Configuration
++ entry --> where we specify the main file, entry point of our application
++ output --> specify the name and location of the file, where the generated output
+                will be stored
+                (To find out the exact path of the folder, we can use nodejs path module
+                __dirname, will give the directory of the current file)
+        We need to include the generated bundle.js file inside the index.html file
+        so that, we can render it
++ we can build using --> npm run webpack --watch
+
++ npm install react react-dom 
+
++ loaders(Babel) are required to use jsx
++ npm install @babel/core --save-dev
+    when we don't use any package in our code, it should be installed as a dev dependency
++ npm install babel-loader
++ Now we need to instruct webpack to use loader to convert react in ES6 to ES5 which all browsers understand
++ By default babel-loader does not have any functionality & we need to add external plugins and presets to
+    what to do
+    npm install @babel/preset-env @babel/preset-react
+
+    preset-env is used to convert ES6 to ES5 code
+    preset-react is used to convert jsx to ES5 code
+
+    To specify these presets to be used by babel-loader, we need to create .babelrc file at the root of the project
+
++ Install css-loader & style-loader
+    css-loader is used to parse the css code
+    style-loader is used to inject the final css into style tag in html file
+
+    Now, we must configure webpack about the loaders, Order in which loaders are to be specified is also important
+    they will parse from right to left
+
+    While bundling, css is also added in js file, we can see about separating it in optimization section
+
++ Install sass-loader
+    npm install sass-loader --save-dev
+
+    error --> Cannot find module 'sass'
+    So to use scss file with its syntax, we normally use node-sass npm package
+    but it is deprecated and not recommended to use
+    Instead sass npm pkg is recommended to use --> npm install sass
+
++ webpack provides its own server known as webpack-dev-server
