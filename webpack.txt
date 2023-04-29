@@ -46,7 +46,7 @@
 + we can build using --> npm run webpack --watch
         you can add build property with value webpack --watch under scripts, in package.json
         
-   ****** Thus creation of basic webpack configuration to render the content is completed ******👍 ✅ 
+   👍 ✅ ****** Thus creation of basic webpack configuration to render the content is completed ******👍 ✅ 
     
     
     
@@ -93,23 +93,49 @@
             
     Now, if we try to run build, it works well
     
-    ****** Thus creation for basic webpack configuration for react is completed *****👍 ✅ 
+    👍 ✅ ****** Thus creation for basic webpack configuration for react is completed *****👍 ✅ 
 
-+ Install css-loader & style-loader
+
+# Adding style sheets to our Application
+
++ If we try to build after adding some css to our basic configured webpack
+    Module parse failed --> we need an appropriate loader to handle this file type
+
++ Install css-loader & style-loader as dev dependency --> npm install css-loader style-loader --save-dev
     css-loader is used to parse the css code
     style-loader is used to inject the final css into style tag in html file
 
-    Now, we must configure webpack about the loaders, Order in which loaders are to be specified is also important
-    they will parse from right to left
-
+    Now, we need to tell webpack to use those loaders by writing rules in webpack.config.js
+    For all the files which have an extension .css, we need to use two loaders, which we will specify under property use
+    Order in which loaders are to be specified is also important
+    they will executed from right to left
+        so css loader will first parse the css & then style loader will load the css into the html file
+    Now if we run build script, we do not encounter any error
+    
     While bundling, css is also added in js file, we can see about separating it in optimization section
 
-+ Install sass-loader
-    npm install sass-loader --save-dev
++ If instead of css, we are using sass with scss extension, 
+    we will encounter error if we try to run build script, because webpack does not know how to work with scss files
+    So, Install sass-loader --> npm install sass-loader --save-dev
 
-    error --> Cannot find module 'sass'
+    In webpack configuration, we need to include sass-loader such that it will be executed first, followed by css-loader
+    and then style-loader
+        
+    Error --> Cannot find module 'sass'
     So to use scss file with its syntax, we normally use node-sass npm package
     but it is deprecated and not recommended to use
     Instead sass npm pkg is recommended to use --> npm install sass
 
+    👍 ✅ ****** Thus creation for basic webpack configuration for style sheets is completed ***** 👍 ✅ 
+
++ From React 17, if we are using only jsx, no longer need to import React
+    However while using create-react-app or vite.js, the configuration for the optional react import is already added
+    We need to do the same configuration for webpack also
+    
+    Inside webpack.config.js --> Add a plugins property
+        use webpack.ProvidePlugin for which we will pass an object with react as key & value
+        First letter of key should be capital
+    
+    👍 ✅ ****** Specifying plugin for react import is completed ****** 👍 ✅
+    
 + webpack provides its own server known as webpack-dev-server
