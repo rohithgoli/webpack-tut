@@ -46,24 +46,54 @@
 + we can build using --> npm run webpack --watch
         you can add build property with value webpack --watch under scripts, in package.json
         
-   ****** Thus creation of basic webpack configuration to render the content is completed ******  
+   ****** Thus creation of basic webpack configuration to render the content is completed ******👍 ✅ 
+    
+    
+    
+# Adding react code to the application
     
 
-+ npm install react react-dom 
++ Install react & react-dom packages --> npm install react react-dom 
+    + If we try to render some content in React
+        --> Module parse fails
+            --> We need an appropriate loader to handle this file type,
+                & currently no loaders are configured to process this file
+                Refer: https://webpack.js.org/concepts#loaders
+    + This is because, we are using jsx syntax for render method
+        & webpack don't have any idea on how to render the jsx :(
+        
+        But, if we use React.createElement instead of jsx, webpack compiles successfully without any error
 
-+ loaders(Babel) are required to use jsx
-+ npm install @babel/core --save-dev
-    when we don't use any package in our code, it should be installed as a dev dependency
-+ npm install babel-loader
++ loaders(Babel) are required to use jsx as it can handle jsx
++ To use Babel, install babel-core as dev dependency using --> npm install @babel/core --save-dev
+    $$$  when we don't use any package directly in our code, it should be installed as a dev dependency.  $$$
+    
+
++ Still we encounter the same issue that we need appropriate loader is needed if we try to build
+    
+    
++ So install package as a dev-dependency --> npm install babel-loader --save-dev
 + Now we need to instruct webpack to use loader to convert react in ES6 to ES5 which all browsers understand
-+ By default babel-loader does not have any functionality & we need to add external plugins and presets to
-    what to do
-    npm install @babel/preset-env @babel/preset-react
+
++ module --> a property to configure loaders
+    rules --> a property which contains array as value
+                Array contains rules which are objects
+
++ If we try to run build, we encounter Module build failed because
+    By default babel-loader does not have any functionality &
+    we need to add external plugins and presets to tell them what to do
+    so, we need to install react & env presets using --> npm install @babel/preset-env @babel/preset-react
 
     preset-env is used to convert ES6 to ES5 code
-    preset-react is used to convert jsx to ES5 code
+    preset-react is required to convert jsx to ES5 code
 
-    To specify these presets to be used by babel-loader, we need to create .babelrc file at the root of the project
+    To specify these presets to be used by babel-loader,
+        we need to create .babelrc file at the root of the project
+            presets --> a property for which we provide all the required presets as an array
+            
+    Now, if we try to run build, it works well
+    
+    ****** Thus creation for basic webpack configuration for react is completed *****👍 ✅ 
 
 + Install css-loader & style-loader
     css-loader is used to parse the css code
