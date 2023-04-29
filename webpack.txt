@@ -138,4 +138,32 @@
     
     👍 ✅ ****** Specifying plugin for react import is completed ****** 👍 ✅
     
-+ webpack provides its own server known as webpack-dev-server
+# Configuring webpack-dev-server
+
++  Until now, we are using liveserver, to automatically reload the page once the content
+    from the bundle.js file, included in the index.html file changes
+    But using liveserver in production is not recommended as it is heavy
+    So, webpack provides its own server known as webpack-dev-server
+    which we can install using --> npm install webpack-dev-server
+
+    To learn more about webpack --> https://webpack.js.org --> Documentation --> Configuration
+
+    + In package.json, we can new script, start, webpack serve
+        Executing webpack serve command, internally executes webpack-dev-server
+
+    👍 ✅ ****** Configuring webpack-dev-server is completed ****** 👍 ✅
+
+
+# How to use Routing with webpack ?
+
++ To use Routing, we have to install react-router-dom library --> npm install react-router-dom
++ Now we can access our application on localhost, But when we refresh the page, 
+    we encounter an error --> Cannot GET /about
+    This is because, when we access any URL in the browser,
+        the request first goes to the server
+        In our case, it is webpack-dev-server, but we don't have any such router to handle the request
+
+    To fix this issue, we need to add one configuration in devServer, which is historyApiFallback property with value true
+        thus, webpack will send back index.html file, when there is no matching route
+
+    👍 ✅ ****** Routing with webpack, configuring webpack devServer property ****** 👍 ✅ 
