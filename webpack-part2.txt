@@ -1,0 +1,29 @@
+
++ If we use .jsx extension instead of .js,
+    we also need to configure webpack correspondingly
+    Hence, in webpack.config.js file, we define resolve property
+    resolve --> a property where we specify extensions whose value is an Array
+
+
+# If Adding images to our Application
+
++ When we try to start webpack, we encounter Error --> Module parse failed
+    We need an appropriate loader to handle this file type
++ To parse the images, we need a loader because image files are binary files
+    So, we need to install file-loader npm package as dev dependency
+        --> npm install file-loader --save-dev
+    We can add rules to rules property in webpack.config.js
+
+    👍 ✅ ****** Thus loader for handling images with webpack configuration is completed *****👍 ✅ 
+
+
+# Debugging in development
+
++ with current configuration, it is not easy to debug from sources available in devtools
+    To fix this, we can use devtool property to enable better quality SourceMaps
+    Now we can observe that original code which is written is available in SourceMaps
+        & is easy to debug rather than converted code (React.createElement format)
+    
+    Thus, while developing the application, always use the eval-source-map
+
+    👍 ✅ ****** Thus devtool property for basic webpack configuration for react is completed *****👍 ✅ 

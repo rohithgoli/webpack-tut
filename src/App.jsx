@@ -1,4 +1,7 @@
 import {BrowserRouter, Link, Route, Routes} from 'react-router-dom';
+import Animation from './images/animation.jpeg';
+import DeliciousFood from './images/delicious_food.jpg';
+import DigitalMarketing from './images/digital_marketing.jpg';
 
 const Header = () => {
     return (
@@ -20,6 +23,7 @@ const Home = () => {
     return (
         <div>
             <h2>Home Component</h2>
+            <img src={Animation} alt="Animation" className="img"/>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                 Maecenas tincidunt metus a venenatis ullamcorper. 
@@ -55,6 +59,7 @@ const Profile = () => {
     return (
         <div>
             <h2>Profile Component</h2>
+            <img src={DeliciousFood} alt="Delicious Food" class="img"/>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                 Maecenas tincidunt metus a venenatis ullamcorper. 
@@ -90,6 +95,7 @@ const About = () => {
     return (
         <div>
             <h2>About Component</h2>
+            <img src={DigitalMarketing} alt="Digital Marketing" className="img" />
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                 Maecenas tincidunt metus a venenatis ullamcorper. 
