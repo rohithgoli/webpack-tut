@@ -1,0 +1,1 @@
+{"version":3,"file":"main.css","mappings":"AAAA,KACI,wBAEA,QACI,UAGJ,UAEI,YADA,WACA","sources":["webpack://webpack-tut/./src/index.scss"],"sourcesContent":["body {\n    background-color: orange;\n\n    h1 {\n        color: red;\n    }\n\n    .img {\n        width: 250px;\n        height: auto;\n    }\n}"],"names":[],"sourceRoot":""}

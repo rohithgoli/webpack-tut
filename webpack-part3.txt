@@ -1,0 +1,74 @@
+# Optimizing application for production
+
++ In current dev version of application, 
+    + we are able to access the entire source code of application and folders in original state
+        which is not good from security point of view
+        because anyone can see the API we are using, how we created the code
+        Hence original source code should not be visible to anyone
+    + size of bundle.js is 3.7 MB which is too much as it contains the original source code
+    + Until now, we are generating the build files in the public folder,
+        we have to change it
+            We will create a new build folder instead of using the public folder
+
++ ✅ we will create separate config files for dev (webpack.dev.js) and production (webpack.prod.js)
+    For production file, we will use the build folder
++ we should also change the scripts accordingly
+
++ ✅ In production, in order to generate index.html file with build, 
+    Refer webpack.js.org --> Guides --> production
+    we need to use HtmlWebpackPlugin
+    to install it as dev dependency --> npm install html-webpack-plugin --save-dev
+
+    we need to add it in the plugins array & ONLY for production file
+
+    Now, if we run --> npm run build
+    we can notice the index.html file created
+    but it has empty body tag, i.e without root
+
+    we have to fix this
++ we can provide a template property to HtmlWebpackPlugin such that index.html
+    that will be generated will resemble the same
+    so create a template.html in public folder such that
+    it will be used for creating index.html file in build folder
+
+    & template.html need not contain script tag for bundle.js because during build it will generate
+    in index.html
+
+
++ ✅ clean property 
+    + whenever we run build, we first need to clean out the all the previously 
+        generated files & then create new files otherwise we might have some unwanted files
+        & might face caching issue
+    + So, for the prod file, clean property is added inside the output property
+
+
++ ✅ We need a separate css file created
+    + In dev version, we don't have a separate css file created, we only have bundle.js file
+        & Inside bundle.js, we have css added
+
+        In this case if bundle.js file is large
+        Until javascript file is not loaded, css files also will not be loaded
+        which is not a good user experience, because until js is loaded, user might see a blank screen
+        with no css loaded
+
+        Hence we need to separate out css from bundle.js file, so that we don't have to wait for js
+            to load completely to see the css loaded
+
+        Thus minimizing css for production
+        mini-css-extract-plugin --> to separate out the css
+        css-minimizer-webpack-plugin --> to minimize the css code
+        as dev dependencies
+
+    + Refer https://webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production
+
+    + Now, if we build, we can notice main.css file available
+
++ Once production grade modified build is deployed, we can notice that
+    + size of bundle.js is too low
+    + No original source code format is available, and available is completely minified
+    + css is also minified
+
++ In order to insert _redirects after build step in production, we will use post-build script
+
++ To load corresponding env, as per dev, prod ; two separate files for each can be created & passed
+    as an argument to config correspondingly

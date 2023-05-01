@@ -1,14 +1,18 @@
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const webpack = require('webpack');
-require('dotenv').config();
-
-console.log(process.env);
+require('dotenv').config({
+    path: './.env.prod'
+});
 
 module.exports = {
     entry: './src/index.jsx',
     output: {
         filename: 'bundle.js',
-        path: path.join(__dirname, '/public')
+        path: path.join(__dirname, 'build'),
+        clean: true
     },
     resolve: {
         extensions: ['.js', '.jsx'],
@@ -26,7 +30,7 @@ module.exports = {
             },
             {
                 test: /\.s?css$/,
-                use: ['style-loader', 'css-loader', 'sass-loader']
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             },
             {
                 test: /\.(jpeg|jpg|png|svg)$/,
@@ -40,12 +44,20 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             'process.env': JSON.stringify(process.env)
-        })
+        }),
+        new HtmlWebpackPlugin({
+            template: './public/template.html'
+        }),
+        new MiniCssExtractPlugin({
+            filename: "[name].css",
+            chunkFilename: "[id].css",
+          }),
     ],
-    mode: 'development',
-    devtool: 'eval-source-map',
-    devServer: {
-        port: 5000,
-        historyApiFallback: true
-    }
+    optimization: {
+        minimizer: [
+          new CssMinimizerPlugin(),
+        ],
+      },
+    mode: 'production',
+    devtool: 'hidden-source-map',
 }
