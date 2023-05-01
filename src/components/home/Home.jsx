@@ -4,7 +4,7 @@ const Home = () => {
     return (
         <div>
             <h2>Profile Component</h2>
-            <img src={Animation} alt="Animation" class="img"/>
+            <img src={Animation} alt="Animation" className="img"/>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                 Maecenas tincidunt metus a venenatis ullamcorper. 

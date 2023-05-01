@@ -4,7 +4,7 @@ const Profile = () => {
     return (
         <div>
             <h2>Profile Component</h2>
-            <img src={DeliciousFood} alt="Delicious Food" class="img"/>
+            <img src={DeliciousFood} alt="Delicious Food" className="img"/>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                 Maecenas tincidunt metus a venenatis ullamcorper. 
