@@ -27,3 +27,44 @@
     Thus, while developing the application, always use the eval-source-map
 
     👍 ✅ ****** Thus devtool property for basic webpack configuration for react is completed *****👍 ✅ 
+
+
+# Deploying Application to production
+
++ Before deploying, we need to build using --> npm run build
+    + In public folder, we can see the images & bundle.js file created which we can deploy to production
+    using netlify
+
++ But, when we refresh page in browser under netlify site, We encounter a page not found error
+    Refer article https://www.freecodecamp.org/news/how-to-deploy-react-router-based-app-to-netlify/
+
+    👍 ✅ ****** Thus Deploying application to production with netlify is completed *****👍 ✅ 
+
+
+# Configuring relative imports in webpack.config.js
+
++ Under resolve property, we have alias property where we can define and simplify the import statements with alias configuration
+
+
+# How to use env variables in React Application ?
+
++ create a .env file in the root of the project
++ If we prefix name of variable with REACT_APP, we can access it directly in our application code
+    with process.env.<name of the variable>
+    Whenever we create a .env file or change its contents, we need to restart the application
+
+    We encounter a ReferenceError: process is not defined
+
+    Thus, by default , process is not available & to make it available, we need to add some configuration
+    As webpack.config.js is a node js file, we can use dotenv npm package to access env variables
+    by installing it as dev dependency --> npm install dotenv --save-dev
+
+    + Import the dotenv npm package into the webpack config file
+        we will call the config method, so all the variables that we have declared in .env file, will be accessible inside webpack.config.js
+        But still it won't be accessible in application files like app.jsx etc..
+
+    + So to send these environment variables to entire application from webpack.config.js, 
+        we can add a new plugin configuration in the plugins array
+    + With this, we can access env variables in our application
+
+    👍 ✅ ****** Thus configuring relative imports & accessing env variables is completed *****👍 ✅ 

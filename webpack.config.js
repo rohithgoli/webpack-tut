@@ -1,5 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
+require('dotenv').config();
+
+console.log(process.env);
 
 module.exports = {
     entry: './src/index.jsx',
@@ -8,7 +11,11 @@ module.exports = {
         path: path.join(__dirname, '/public')
     },
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx'],
+        alias: {
+            images: path.join(__dirname, 'src/images'),
+            src: path.join(__dirname, 'src')
+        }
     },
     module: {
         rules: [
@@ -30,6 +37,9 @@ module.exports = {
     plugins: [
         new webpack.ProvidePlugin({
             React: 'react'
+        }),
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(process.env)
         })
     ],
     mode: 'development',
